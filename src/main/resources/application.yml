@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: framework-study
+
+  # H2 Database ??
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: 'jdbc:h2:mem:test'   # H2 DB ?? ?? (In-Memory Mode)
+    username: sa
+    password:
+
+  sql:
+    init: # application ??? sql ??
+      mode: always
+      data-locations: classpath*:db/data.sql
+      continue-on-error: true
+
+  # H2 Console ??
+  h2:
+    console: # H2 DB? ??? ??? ? ?? ??
+      enabled: true # H2 Console ?? ??
+      path: /h2-console # H2 Console ?? ??
+
+  # JPA ??
+  jpa:
+    hibernate:
+      ddl-auto: create # DB ??? ?? (none, create, create-drop, update, validate)
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true # ?? ?? ?? (??)
+        show_sql: true # ?? ?? ??
+    defer-datasource-initialization: true
+
+logging:
+  level.org.hibernate:
+    SQL: DEBUG
+    orm.jdbc.bind: TRACE
+
+# swagger ??
+springdoc:
+  swagger-ui:
+    path: /swagger-index
+    disable-swagger-default-url: true
