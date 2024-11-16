@@ -1,0 +1,62 @@
+@startuml
+actor Client as "클라이언트"
+
+rectangle 게시판 {
+    usecase UC1 as "전체 게시글 목록 조회"
+    usecase UC2 as "게시글 작성"
+    usecase UC3 as "선택한 게시글 조회"
+    usecase UC4 as "게시글 수정"
+    usecase UC5 as "게시글 삭제"
+}
+
+rectangle 회원 {
+    usecase UC6 as "회원 가입"
+    usecase UC7 as "로그인"
+}
+
+Client --> UC1 : "목록 조회 요청"
+Client --> UC2 : "게시글 작성 요청"
+Client --> UC3 : "게시글 조회 요청"
+Client --> UC4 : "게시글 수정 요청"
+Client --> UC5 : "게시글 삭제 요청"
+Client --> UC6 : "회원 가입 요청"
+Client --> UC7 : "로그인 요청"
+
+note bottom of UC1
+- 작성 날짜 기준 내림차순 정렬
+end note
+
+note bottom of UC2
+- 제목, 작성자명, 비밀번호, 작성 내용 저장
+- 저장된 게시글 반환
+end note
+
+note bottom of UC3
+- 선택한 게시글의 제목, 작성자명, 작성 날짜, 작성 내용 조회
+end note
+
+note bottom of UC4
+- 비밀번호 확인
+- 제목, 작성자명, 작성 내용 수정
+- 수정된 게시글 반환
+end note
+
+note bottom of UC5
+- 비밀번호 확인
+- 게시글 삭제
+- 성공 응답 반환
+end note
+
+note bottom of UC6
+- username, password 전달
+- 유효성 검사 후 회원 저장
+- 성공 메시지 반환
+end note
+
+note bottom of UC7
+- username, password 전달
+- 로그인 후 JWT 토큰 발급
+- 성공 메시지와 토큰 반환
+end note
+
+@enduml
